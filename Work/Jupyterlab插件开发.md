@@ -8,16 +8,19 @@
 
 ### 一、 创建 conda 虚拟环境
 
-`    conda create -n jupyterlab-extension  --override-channels --strict-channel-priority -c conda-forge -c nodefaults jupyterlab nodejs git cookiecutter jinja2-time`
+```
+conda create -n jupyterlab-extension  --override-channels --strict-channel-priority -c conda-forge -c nodefaults jupyterlab nodejs git cookiecutter jinja2-time
+```
 
 ### 二、进入到虚拟环境里面
-
+```
 conda activate jupyterlab-extension
+```
 
 ### 三、进入到工作目录
-
+```
 cd workDir
-
+```
 ### 四、下载
 
 `旧：cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts.git`
