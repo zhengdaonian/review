@@ -2,7 +2,7 @@
 
 ### 方案一
 
-`
+```
 export function printHtml(html) {
 const style = getStyle();
 const container = getContainer(html);
@@ -91,11 +91,11 @@ img.addEventListener('error', check);
 });
 }
 
-`
+```
 
 ### 方案二 html2canvas + jspdf
 
-`
+```
 npm install --save html2canvas
 npm install --save jspdf
 // utils/htmlToPdf.js：导出页面为 PDF 格式
@@ -182,7 +182,7 @@ logging: true // 日志开关，发布的时候记得改成 false
   },
  </script>
 
-`
+```
 
 页面转码时间会长
 可以考虑在页面初始化完成后就对页面进行抓取绘制及转码，将转码数据保存，在点击下载时直接生成 pdf 并保存。
@@ -192,7 +192,7 @@ html2canvas 能够抓取的页面长度大约为 1440，两个 A4 页面左右�
 
 [nuxt3 搭建中间层服务 html 生成 PDF 方案： 基于 nuxt3 + puppeteer](https://juejin.cn/post/7165902819701522445?share_token=9d11665e-e167-4c65-baab-3068fa4df1ea)
 
-`
+```
 var express = require('express');
 var app = express();
 // 路由中间件：get 请求"/"资源
@@ -225,9 +225,9 @@ const fs = require('fs');
     browser.close();
 
 })()
-`
+```
 
-`
+```
 var express = require('express');
 var app = express();
 // 路由中间件：get 请求"/"资源
@@ -292,7 +292,7 @@ const fs = require('fs');
     browser.close();
 
 })()
-`
+```
 
 ### 方案四 pdfmake
 
