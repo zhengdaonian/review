@@ -37,10 +37,10 @@ BFC 能解决：
 
 1. position: static; 默认值。没有定位
 2. position: inherit; 继承父元素
-3. position: relative; 相对定位
-4. position: absolute; 绝对定位
-5. position: fixed; 固定定位
-6. position: sticky; 粘性定位
+3. position: relative; 相对定位；正常文档流，相对自身定位
+4. position: absolute; 绝对定位；脱离文档流，相对上级有position属性且值不为static得元素定位，若没有相对body定位
+5. position: fixed; 固定定位；脱离文档流，相对于浏览器窗口定位
+6. position: sticky; 粘性定位；根据窗口滚动自动切换relative和fixed，由top决定
 
 ## 怎么开启动画加速，底层原理是什么
 
