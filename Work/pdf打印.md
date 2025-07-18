@@ -1,3 +1,5 @@
+[如何用html2canvas +jsPDF更简单实现pdf防截断导出（含算法优化）？](https://juejin.cn/post/7256983702811344952)
+
 ## 页面打印 pdf
 
 ### 方案一
