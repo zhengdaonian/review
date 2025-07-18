@@ -150,4 +150,78 @@ onMounted(() => {
    <br />
    通过减少帧率来控制码率的效果可能并不明显，因为在传输数据之前是要将原始音视频数据进行压缩的，在同一个 GOP（Group Of Picture）中，除了 I/IDR 帧外，B 帧和 P 帧的数据量是非常小的。因此，减少帧率的方式就没有降低分辨率方式效果明显了。
 
-## 控制码率
+## 修改码率
+
+这种是直推，还有一种是将流绘制到 canvas 上，再把 canvas 推送
+
+```直推
+const { resolution, frame, bitrate } = formModel;
+  let height = 720;
+  let width = 1280;
+  if (resolution === 1) {
+    width = 1920;
+    height = 1080;
+  }
+  // 重新获取流
+  try {
+    // 关闭旧流
+    if (videoStream.value) {
+      videoStream.value.getTracks().forEach((track: { stop: () => any }) => track.stop());
+      videoStream.value = null;
+    }
+    // 重新获取流
+    videoStream.value = await navigator.mediaDevices.getUserMedia({
+      video: {
+        width,
+        height,
+        frameRate: frame
+      },
+      audio: true
+    });
+    if (localVideoRef.value) {
+      localVideoRef.value.srcObject = videoStream.value;
+    }
+    await nextTick();
+    // 关闭并重启推流
+    if (rtcPublisher && rtcPublisher.close) {
+      rtcPublisher.close();
+    }
+    await startPublisher();
+    // 设置码率（部分浏览器支持）
+    if (rtcPublisher && rtcPublisher.pc) {
+      const sender = rtcPublisher.pc
+        .getSenders()
+        .find((s: { track: { kind: string } }) => s.track && s.track.kind === 'video');
+      if (sender) {
+        const params = sender.getParameters();
+        if (!params.encodings) params.encodings = [{}];
+        params.encodings[0].maxBitrate = bitrate * 1024; // bitrate 单位 kbps
+        await sender.setParameters(params);
+      }
+    }
+  } catch (err) {
+    console.error('切换清晰度失败', err);
+  }
+
+```
+
+```canvas
+// 绘制视频帧
+ctx = canvas.getContext("2d");
+ctx.drawImage(video, 0, 0, 1920, 1080)
+
+ctx = this.$refs.canvasRef.getContext("2d");
+
+const video = document.createElement('video');
+video.crossOrigin = 'anonymous';
+video.src = TestVideo;
+video.muted = true; // 静音才能实现自动播放
+video.preload = 'auto';
+video.loop = true;
+
+let maxFramerate = 60; // 设置帧率为60
+const delay = 1000 / (maxFramerate / (17.68 / 20));
+setInterval(() => {
+  ctx.drawImage(video, 0, 0, 1920, 1080); //绘制视频
+}, delay);
+```
