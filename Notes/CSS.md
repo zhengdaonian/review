@@ -67,3 +67,9 @@ BFC 能解决：
 <strong>使用 `absolute` 或 `fixed` 使元素脱离文档流</strong>，这在制作复杂的动画时对性能的影响比较明显。
 <br />
 <strong>开启 GPU 加速</strong>，利用 css 属性 transform 、will-change 等，比如改变元素位置，我们使用 translate 会比使用绝对定位改变其 left 、top 等来的高效，因为它不会触发重排或重绘，transform 使浏览器为元素创建⼀个 GPU 图层，这使得动画元素在一个独立的层中进行渲染。当元素的内容没有发生改变，就没有必要进行重绘。
+
+、BFC、IFC、GFC、FFC
+BFC	块级格式化上下文
+IFC	内联格式化上下文
+GFC	网格布局式上下文
+FFC	灵活格式化上下文
