@@ -158,3 +158,17 @@ Promise.race([p1, p2, p3]).then((res) => {
 ### 写个debounce，加个立即执行怎么加
 
 ### Set和Map
+
+
+```
+var foo = 1;
+function fn() {
+    foo = 3;
+    return;
+    funciton foo() {
+        // todo
+    }
+}
+fn();
+console.log(foo);
+```
