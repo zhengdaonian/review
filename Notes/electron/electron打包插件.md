@@ -130,8 +130,8 @@ export const ElectronBuildPlugin = (): Plugin => {
           files: ['**/*', '!bin/**/*', '!build/**/*', '!vlc-3.0.9.2/**/*', '!path_to_some_media_file.mp4'],
           asar: true,
           appId: 'com.rqAdmin.id',
-          productName: '沉浸式智能教学管理平台',
-          copyright: 'Copyright © 2024 广东融勤教育科技有限公司',
+          productName: '管理平台',
+          copyright: 'Copyright © 2024 有限公司',
           nsis: {
             oneClick: false,
             perMachine: false,
@@ -140,7 +140,7 @@ export const ElectronBuildPlugin = (): Plugin => {
             installerHeaderIcon: './dist/favicon.ico',
             createDesktopShortcut: true,
             createStartMenuShortcut: true,
-            shortcutName: '沉浸式智能教学管理平台'
+            shortcutName: '管理平台'
           },
           extraResources: [
             {
@@ -181,7 +181,7 @@ export const ElectronBuildPlugin = (): Plugin => {
             publish: [
               {
                 provider: 'generic',
-                url: 'http://192.168.3.249/updater/RQ_AI_ADMIN/'
+                url: 'http://192.168.3.249/updater/ADMIN/'
               }
             ]
           }
@@ -202,31 +202,4 @@ export const ElectronBuildPlugin = (): Plugin => {
     }
   };
 };
-```
-
-```清理页面缓存
-let cache = app.getPath('cache');
-// 获取缓存的路径
-const cachePath = path.join(cache, 'appName');
- // 清理缓存目录下的文件
-if (fs.existsSync(cachePath)) {
-   var deletePath = ['blob_storage', 'Code Cache'];
-   for (var i = 0; i < deletePath.length; i++) {
-       deleteDirectoryRecursive(path.join(cachePath, deletePath[i]));
-   }
- }
-
-function deleteDirectoryRecursive(directoryPath) {
-  if (fs.existsSync(directoryPath)) {
-    fs.readdirSync(directoryPath).forEach(function(file, index) {
-      var curPath = path.join(directoryPath, file);
-      if (fs.lstatSync(curPath).isDirectory()) { // recurse
-        deleteDirectoryRecursive(curPath);
-      } else { // delete file
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(directoryPath);
-  }
-}
 ```

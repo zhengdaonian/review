@@ -25,7 +25,6 @@ Vue2 使用 Object.defineProperty 计算量大，数组
 
 ### vue的nextTick原理，为什么是先用promise，mutationObserver再用setTimeout和setInterval
 
-
 ### webpack和vite的实现原理有何区别
 
 ### class组件和函数组件区别
